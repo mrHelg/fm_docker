@@ -1,0 +1,18 @@
+FROM node:16.13.2-alpine3.14
+
+RUN mkdir /app
+
+WORKDIR /app
+
+# из корня проекта в корень рабочей папки контейнера
+COPY ./ ./ 
+
+# в .dockerignore прописываем /node_modules/,
+# поэтому надо инсталировать все модуля
+RUN npm i
+
+# PORT NUMBER
+EXPOSE 3000
+
+# Run app
+CMD ["npm", "run", "start"]
